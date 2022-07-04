@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32328.378
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerialMemTest", "SerialMemTest.csproj", "{929BC8CB-C619-418C-9EB2-A0C3C7356EFA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{929BC8CB-C619-418C-9EB2-A0C3C7356EFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{929BC8CB-C619-418C-9EB2-A0C3C7356EFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{929BC8CB-C619-418C-9EB2-A0C3C7356EFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{929BC8CB-C619-418C-9EB2-A0C3C7356EFA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6B35393B-BFAD-4BB6-94B7-6DD2352DEFCF}
+	EndGlobalSection
+EndGlobal

@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using Apex.Serialization;
 using MessagePack;
+using ProtoBuf;
 using SerialMemTest;
 
 Member member = new()
@@ -38,8 +39,18 @@ for (int i = 0; i < 10; i++)
     Console.WriteLine($"Apex time = {stopwatch.Elapsed.TotalMilliseconds:F4} ms");
     long apexLength = stream.Position;
 
-    Console.WriteLine($"MessagePackLength = {messagePackLength}");
-    Console.WriteLine($"ApexLength = {apexLength}");
+    await using MemoryStream stream2 = new();
+    Serializer.PrepareSerializer<Member>();
+    stopwatch.Restart();
+    Serializer.Serialize(stream2, member);
+    stopwatch.Stop();
+    Console.WriteLine($"ProtoBuf time = {stopwatch.Elapsed.TotalMilliseconds:F4} ms");
+    long protobufLength = stream2.Position;
+
+
+    Console.WriteLine($"messagePackLength = {messagePackLength}");
+    Console.WriteLine($"apexLength = {apexLength}");
+    Console.WriteLine($"protobufLength = {protobufLength}");
     Console.WriteLine("----------");
 }
 

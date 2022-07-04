@@ -1,4 +1,5 @@
-﻿using Apex.Serialization;
+﻿using System.Diagnostics;
+using Apex.Serialization;
 using MessagePack;
 using SerialMemTest;
 
@@ -21,12 +22,24 @@ Member member = new()
     Description = null
 };
 
-long messagePackLength = MessagePackSerializer.Serialize(member).LongLength;
+Stopwatch stopwatch = new Stopwatch();
+for (int i = 0; i < 10; i++)
+{
+    stopwatch.Restart();
+    long messagePackLength = MessagePackSerializer.Serialize(member).LongLength;
+    stopwatch.Stop();
+    Console.WriteLine($"MessagePack time = {stopwatch.Elapsed.TotalMilliseconds:F4} ms");
 
-IBinary serializer = Binary.Create(new Settings().MarkSerializable(typeof(Member)));
-await using MemoryStream stream = new();
-serializer.Write(member, stream);
-long apexLength = stream.Position;
+    IBinary serializer = Binary.Create(new Settings().MarkSerializable(typeof(Member)));
+    await using MemoryStream stream = new();
+    stopwatch.Restart();
+    serializer.Write(member, stream);
+    stopwatch.Stop();
+    Console.WriteLine($"Apex time = {stopwatch.Elapsed.TotalMilliseconds:F4} ms");
+    long apexLength = stream.Position;
 
-Console.WriteLine($"MessagePackLength = {messagePackLength:D5}");
-Console.WriteLine($"ApexLength = {apexLength:D5}");
+    Console.WriteLine($"MessagePackLength = {messagePackLength}");
+    Console.WriteLine($"ApexLength = {apexLength}");
+    Console.WriteLine("----------");
+}
+
